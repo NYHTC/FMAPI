@@ -1,5 +1,5 @@
 {
-	"name": "andrewmile/fm-laravel",
+	"name": "andrewmile/fm-api",
 	"description": "FileMaker API for PHP",
 	"keywords": [
 		"filemaker"
