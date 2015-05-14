@@ -1,0 +1,21 @@
+{
+	"name": "andrewmile/fm-laravel",
+	"description": "FileMaker API for PHP",
+	"keywords": [
+		"filemaker"
+	],
+	"authors": [
+		{
+			"name": "Andrew Morgan",
+			"email": "andrewmile@gmail.com"
+		}
+	],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+	    "psr-0": {
+			"": "src/"
+		}
+	}
+}
