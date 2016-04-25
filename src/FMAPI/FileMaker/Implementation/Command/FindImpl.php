@@ -11,10 +11,12 @@ class FileMaker_Command_Find_Implementation extends FileMaker_Command_Implementa
 
     public $V6da136ea;
     public $V568aa2ec;
+
     public function __construct($V0ab34ca9, $Vc6140495)
     {
         parent::__construct($V0ab34ca9, $Vc6140495);
     }
+
     public function &execute()
     {
         $V21ffce5b = $this->_getCommandParams();
@@ -41,14 +43,17 @@ class FileMaker_Command_Find_Implementation extends FileMaker_Command_Implementa
         }
         return $this->_getResult($V0f635d0e);
     }
+
     public function addFindCriterion($Vd1148ee8, $Ve9de89b0)
     {
         $this->_findCriteria[$Vd1148ee8] = $Ve9de89b0;
     }
+
     public function clearFindCriteria()
     {
         $this->_findCriteria = array();
     }
+
     public function addSortRule($Vd1148ee8, $Vffbd028a, $V70a17ffa = null)
     {
         $this->Vd65662c5[$Vffbd028a] = $Vd1148ee8;
@@ -56,11 +61,13 @@ class FileMaker_Command_Find_Implementation extends FileMaker_Command_Implementa
             $this->Va9136a07[$Vffbd028a] = $V70a17ffa;
         }
     }
+
     public function clearSortRules()
     {
         $this->Vd65662c5 = array();
         $this->Va9136a07 = array();
     }
+
     public function setLogicalOperator($V4b583376)
     {
         switch ($V4b583376) {
@@ -70,26 +77,31 @@ class FileMaker_Command_Find_Implementation extends FileMaker_Command_Implementa
                 break;
         }
     }
+
     public function setRange($V08b43519 = 0, $V2ffe4e77 = null)
     {
         $this->V83f28691 = $V08b43519;
         $this->V85fd701e = $V2ffe4e77;
     }
+
     public function getRange()
     {
         return array('skip' => $this->V83f28691,
             'max' => $this->V85fd701e);
     }
+
     public function setRelatedSetsFilters($Vdba51d08, $V01a8ebbf = null)
     {
         $this->V6da136ea = $Vdba51d08;
         $this->V568aa2ec = $V01a8ebbf;
     }
+
     public function getRelatedSetsFilters()
     {
         return array('relatedsetsfilter' => $this->V6da136ea,
             'relatedsetsmax' => $this->V568aa2ec);
     }
+
     public function _setRelatedSetsFilters(&$V21ffce5b)
     {
         if ($this->V6da136ea) {
@@ -99,6 +111,7 @@ class FileMaker_Command_Find_Implementation extends FileMaker_Command_Implementa
             $V21ffce5b['-relatedsets.max'] = $this->V568aa2ec;
         }
     }
+
     public function _setSortParams(&$V21ffce5b)
     {
         foreach ($this->Vd65662c5 as $Vffbd028a => $Vd1148ee8) {
@@ -108,6 +121,7 @@ class FileMaker_Command_Find_Implementation extends FileMaker_Command_Implementa
             $V21ffce5b['-sortorder.' . $Vffbd028a] = $V70a17ffa;
         }
     }
+
     public function _setRangeParams(&$V21ffce5b)
     {
         if ($this->V83f28691) {
