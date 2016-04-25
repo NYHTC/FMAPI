@@ -36,19 +36,19 @@ class FileMaker_Error extends PEAR_Error
      * @var FileMaker
      * @access private
      */
-    var $_fm;
+    public $_fm;
 
     /**
      * Overloaded FileMaker_Error constructor.
      *
-     * @param FileMaker_Delegate &$fm FileMaker_Delegate object this error 
+     * @param FileMaker_Delegate &$fm FileMaker_Delegate object this error
      *        came from.
      * @param string $message Error message.
      * @param integer $code Error code.
      */
-    function FileMaker_Error(&$fm, $message = null, $code = null)
+    public function __construct(&$fm, $message = null, $code = null)
     {
-        $this->_fm =& $fm;
+        $this->_fm = &$fm;
         parent::PEAR_Error($message, $code);
 
         // Log the error.
@@ -56,13 +56,13 @@ class FileMaker_Error extends PEAR_Error
     }
 
     /**
-     * Overloads getMessage() to return an equivalent FileMaker Web Publishing 
-     * Engine error if no message is explicitly set and this object has an 
+     * Overloads getMessage() to return an equivalent FileMaker Web Publishing
+     * Engine error if no message is explicitly set and this object has an
      * error code.
-     * 
+     *
      * @return string Error message.
      */
-    function getMessage()
+    public function getMessage()
     {
         if ($this->message === null && $this->getCode() !== null) {
             return $this->getErrorString();
@@ -71,16 +71,16 @@ class FileMaker_Error extends PEAR_Error
     }
 
     /**
-     * Returns the string representation of $this->code in the language 
-     * currently  set for PHP error messages in FileMaker Server Admin 
+     * Returns the string representation of $this->code in the language
+     * currently  set for PHP error messages in FileMaker Server Admin
      * Console.
-     * 
+     *
      * You should call getMessage() in most cases, if you are not sure whether
      * the error is a FileMaker Web Publishing Engine error with an error code.
      *
      * @return string Error description.
      */
-    function getErrorString()
+    public function getErrorString()
     {
         // Default to English.
         $lang = basename($this->_fm->getProperty('locale'));
@@ -104,13 +104,13 @@ class FileMaker_Error extends PEAR_Error
     }
 
     /**
-     * Indicates whether the error is a detailed pre-validation error  
+     * Indicates whether the error is a detailed pre-validation error
      * or a FileMaker Web Publishing Engine error.
      *
-     * @return boolean FALSE, to indicate that this is an error from the 
+     * @return boolean FALSE, to indicate that this is an error from the
      *         Web Publishing Engine.
      */
-    function isValidationError()
+    public function isValidationError()
     {
         return false;
     }

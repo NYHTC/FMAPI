@@ -21,7 +21,7 @@ require_once dirname(__FILE__) . '/../Implementation/Command/FindRequestImpl.php
 /**#@-*/
 
 /**
- * Find Request class. Contains all the information about a single find request 
+ * Find Request class. Contains all the information about a single find request
  * for a Compound Find command.
  * Create this command with {@link FileMaker::newFindRequest()}.
  *
@@ -35,29 +35,29 @@ class FileMaker_Command_FindRequest
      * @var FileMaker_Command_Find_Implementation
      * @access private
      */
-    var $_impl;
+    public $_impl;
 
     /**
      * Find request constructor.
      *
      * @ignore
-     * @param FileMaker_Implementation $fm FileMaker_Implementation object the 
+     * @param FileMaker_Implementation $fm FileMaker_Implementation object the
      *        request was created by.
      * @param string $layout Layout to find records in.
      */
-    function FileMaker_Command_FindRequest($fm, $layout)
+    public function __construct($fm, $layout)
     {
         $this->_impl = new FileMaker_Command_FindRequest_Implementation($fm, $layout);
     }
 
     /**
      * Sets whether this request is an omit request.
-     * 
+     *
      * An omit request removes the matching records from the final result set.
      *
      * @param boolean $value TRUE if this is an omit request. Otherwise, FALSE.
      */
-    function setOmit($value)
+    public function setOmit($value)
     {
         $this->_impl->setOmit($value);
     }
@@ -68,18 +68,17 @@ class FileMaker_Command_FindRequest
      * @param string $fieldname Name of the field being tested.
      * @param string $testvalue Value of the field to test against.
      */
-    function addFindCriterion($fieldname, $testvalue)
+    public function addFindCriterion($fieldname, $testvalue)
     {
         $this->_impl->addFindCriterion($fieldname, $testvalue);
     }
-    
+
     /**
      * Clears all existing criteria from this find request.
      */
-    function clearFindCriteria()
+    public function clearFindCriteria()
     {
         $this->_impl->clearFindCriteria();
     }
 
-	   
 }
