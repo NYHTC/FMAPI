@@ -34,7 +34,7 @@ class FileMaker_Command_Add extends FileMaker_Command
      * @var FileMaker_Command_Add_Implementation
      * @access private
      */
-    var $_impl;
+    public $_impl;
 
     /**
      * Add command constructor.
@@ -46,7 +46,7 @@ class FileMaker_Command_Add extends FileMaker_Command
      * use a numerically indexed array for the value of a field, with the numeric keys
      * corresponding to the repetition number to set.
      */
-    function FileMaker_Command_Add($fm, $layout, $values = array())
+    public function __construct($fm, $layout, $values = array())
     {
         $this->_impl = new FileMaker_Command_Add_Implementation($fm, $layout, $values);
     }
@@ -59,28 +59,28 @@ class FileMaker_Command_Add extends FileMaker_Command
      * @param integer $repetition Field repetition number to set,
      *        Defaults to the first repetition.
      */
-    function setField($field, $value, $repetition = 0)
+    public function setField($field, $value, $repetition = 0)
     {
         return $this->_impl->setField($field, $value, $repetition);
     }
 
     /**
      * Sets the new value for a date, time, or timestamp field from a
-     * UNIX timestamp value. 
+     * UNIX timestamp value.
      *
-     * If the field is not a date or time field, then this method returns  
+     * If the field is not a date or time field, then this method returns
      * an Error object. Otherwise, returns TRUE.
      *
-     * If layout data for the target of this command has not already 
+     * If layout data for the target of this command has not already
      * been loaded, calling this method loads layout data so that
      * the type of the field can be checked.
      *
      * @param string $field Name of the field to set.
      * @param string $timestamp Timestamp value.
-     * @param integer $repetition Field repetition number to set. 
+     * @param integer $repetition Field repetition number to set.
      *        Defaults to the first repetition.
      */
-    function setFieldFromTimestamp($field, $timestamp, $repetition = 0)
+    public function setFieldFromTimestamp($field, $timestamp, $repetition = 0)
     {
         return $this->_impl->setFieldFromTimestamp($field, $timestamp, $repetition);
     }

@@ -34,14 +34,14 @@ class FileMaker_Field
      * @var FileMaker_Layout_Implementation
      * @access private
      */
-    var $_impl;
+    public $_impl;
 
     /**
      * Field object constructor.
      *
      * @param FileMaker_Layout &$layout Parent Layout object.
      */
-    function FileMaker_Field(&$layout)
+    public function __construct(&$layout)
     {
         $this->_impl = new FileMaker_Field_Implementation($layout);
     }
@@ -51,7 +51,7 @@ class FileMaker_Field
      *
      * @return string Field name.
      */
-    function getName()
+    public function getName()
     {
         return $this->_impl->getName();
     }
@@ -61,18 +61,18 @@ class FileMaker_Field
      *
      * @return FileMaker_Layout Layout object.
      */
-    function &getLayout()
+    public function &getLayout()
     {
-        return $layout =& $this->_impl->getLayout();
+        return $layout = &$this->_impl->getLayout();
     }
 
     /**
-     * Returns TRUE if data in this field is auto-entered or FALSE 
+     * Returns TRUE if data in this field is auto-entered or FALSE
      * if it is entered manually.
      *
      * @return boolean Auto-entered status of this field.
      */
-    function isAutoEntered()
+    public function isAutoEntered()
     {
         return $this->_impl->isAutoEntered();
     }
@@ -82,7 +82,7 @@ class FileMaker_Field
      *
      * @return boolean Global status of this field.
      */
-    function isGlobal()
+    public function isGlobal()
     {
         return $this->_impl->isGlobal();
     }
@@ -92,7 +92,7 @@ class FileMaker_Field
      *
      * @return integer Maximum repetitions of this field.
      */
-    function getRepetitionCount()
+    public function getRepetitionCount()
     {
         return $this->_impl->getRepetitionCount();
     }
@@ -103,42 +103,42 @@ class FileMaker_Field
      * failed.
      *
      * @param mixed $value Value to pre-validate.
-     * @param FileMaker_Error_Validation $error If pre-validation is being 
-     *        done on more than one field, you may pass validate() an existing 
-     *        error object to add pre-validation failures to.$error is not 
-     *        passed by reference, though, so you must catch the return value 
-     *        of validate() and use it as the new $error object. This method 
+     * @param FileMaker_Error_Validation $error If pre-validation is being
+     *        done on more than one field, you may pass validate() an existing
+     *        error object to add pre-validation failures to.$error is not
+     *        passed by reference, though, so you must catch the return value
+     *        of validate() and use it as the new $error object. This method
      *        never overwrites an existing $error object with boolean TRUE.
      *
-     * @return boolean|FileMaker_Error_Validation Result of field 
+     * @return boolean|FileMaker_Error_Validation Result of field
      *         pre-validation on $value.
      */
-    function validate($value, $error = null)
+    public function validate($value, $error = null)
     {
         return $this->_impl->validate($value, $error);
     }
 
     /**
-     * Returns an array of FILEMAKER_RULE_* constants for each rule 
-     * set on this field that can be evaluated by the PHP engine. 
-     * 
-     * Rules such as "unique" and "exists" can only be pre-validated on the 
+     * Returns an array of FILEMAKER_RULE_* constants for each rule
+     * set on this field that can be evaluated by the PHP engine.
+     *
+     * Rules such as "unique" and "exists" can only be pre-validated on the
      * Database Server and are not included in this list.
      *
      * @return array Local rule array.
      */
-    function getLocalValidationRules()
+    public function getLocalValidationRules()
     {
         return $this->_impl->getLocalValidationRules();
     }
 
     /**
-     * Returns an array of FILEMAKER_RULE_* constants for each rule 
+     * Returns an array of FILEMAKER_RULE_* constants for each rule
      * set on this field.
      *
      * @return array Rule array.
      */
-    function getValidationRules()
+    public function getValidationRules()
     {
         return $this->_impl->getValidationRules();
     }
@@ -149,7 +149,7 @@ class FileMaker_Field
      *
      * @return integer Rule bitmask.
      */
-    function getValidationMask()
+    public function getValidationMask()
     {
         return $this->_impl->getValidationMask();
     }
@@ -162,43 +162,43 @@ class FileMaker_Field
      *
      * @return boolean
      */
-    function hasValidationRule($validationRule)
+    public function hasValidationRule($validationRule)
     {
         return $this->_impl->hasValidationRule($validationRule);
     }
 
     /**
-     * Returns any additional information for the specified pre-validation 
-     * rule. 
+     * Returns any additional information for the specified pre-validation
+     * rule.
      *
-     * Used for range rules and other rules that have additional 
+     * Used for range rules and other rules that have additional
      * pre-validation parameters.
      *
-     * @param integer $validationRule FILEMAKER_RULE_* constant 
-     *        to get information for. 
-     * 
+     * @param integer $validationRule FILEMAKER_RULE_* constant
+     *        to get information for.
+     *
      * @return array Any extra information for $validationRule.
      */
-    function describeValidationRule($validationRule)
+    public function describeValidationRule($validationRule)
     {
         return $this->_impl->describeValidationRule($validationRule);
     }
 
     /**
-     * Return an array of arrays containing the extra information for 
-     * all pre-validation rules on this field that can be evaluated by the 
-     * PHP engine. 
-     * 
-     * Rules such as "unique" and "exists" can be validated only 
-     * on the Database Server and are not included in this list. 
-     * Indexes of the outer array are FILEMAKER_RULE_* constants, 
+     * Return an array of arrays containing the extra information for
+     * all pre-validation rules on this field that can be evaluated by the
+     * PHP engine.
+     *
+     * Rules such as "unique" and "exists" can be validated only
+     * on the Database Server and are not included in this list.
+     * Indexes of the outer array are FILEMAKER_RULE_* constants,
      * and values are the same array returned by describeValidationRule().
      *
-     * @return array An associative array of all extra pre-validation 
-     *         information, with rule constants as indexes and extra 
+     * @return array An associative array of all extra pre-validation
+     *         information, with rule constants as indexes and extra
      *         information as the values.
      */
-    function describeLocalValidationRules()
+    public function describeLocalValidationRules()
     {
         return $this->_impl->describeLocalValidationRules();
     }
@@ -206,11 +206,11 @@ class FileMaker_Field
     /**
      * Returns any additional information for all pre-validation rules.
      *
-     * @return array An associative array of all extra pre-validation 
-     *         information, with FILEMAKER_RULE_* constants 
+     * @return array An associative array of all extra pre-validation
+     *         information, with FILEMAKER_RULE_* constants
      *         as keys and extra information as the values.
      */
-    function describeValidationRules()
+    public function describeValidationRules()
     {
         return $this->_impl->describeValidationRules();
     }
@@ -221,7 +221,7 @@ class FileMaker_Field
      *
      * @return string Result type.
      */
-    function getResult()
+    public function getResult()
     {
         return $this->_impl->getResult();
     }
@@ -232,35 +232,35 @@ class FileMaker_Field
      *
      * @return string Type.
      */
-    function getType()
+    public function getType()
     {
         return $this->_impl->getType();
     }
 
     /**
-     * Returns the list of choices from the value list associated with this 
-     * field. 
+     * Returns the list of choices from the value list associated with this
+     * field.
      *
-     * If this field is not associated with a value list, this method returns 
+     * If this field is not associated with a value list, this method returns
      * NULL.
      *
      * @param string  $recid Record from which to display the value list.
-     * 
+     *
      * @return array Value list array.
      */
-    function getValueList($recid = null)
+    public function getValueList($recid = null)
     {
         return $this->_impl->getValueList($recid);
     }
 
     /**
-     * Returns the control style type of this field -- for example, 
+     * Returns the control style type of this field -- for example,
      * 'EDITTEXT', 'POPUPLIST', 'POPUPMENU', 'CHECKBOX', 'RADIOBUTTONS' or
      * 'CALENDAR'.
      *
      * @return string Style type.
      */
-    function getStyleType()
+    public function getStyleType()
     {
         return $this->_impl->getStyleType();
     }

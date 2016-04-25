@@ -34,17 +34,17 @@ class FileMaker_Command_FindAny extends FileMaker_Command_Find
      * @var FileMaker_Command_FindAny_Implementation
      * @access private
      */
-    var $_impl;
+    public $_impl;
 
     /**
      * FindAny command constructor.
      *
      * @ignore
-     * @param FileMaker_Implementation $fm FileMaker_Implementation object the 
+     * @param FileMaker_Implementation $fm FileMaker_Implementation object the
      *        command was created by.
      * @param string $layout Layout to find a random record from.
      */
-    function FileMaker_Command_FindAny($fm, $layout)
+    public function __construct($fm, $layout)
     {
         $this->_impl = new FileMaker_Command_FindAny_Implementation($fm, $layout);
     }
